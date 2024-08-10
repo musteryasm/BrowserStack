@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #log-container {
+            width: 80%;
+            height: 80%;
+            overflow-y: auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="log-container"></div>
+
+    <script>
+        const logContainer = document.getElementById('log-container');
+        const ws = new WebSocket('ws://localhost:2003');
+
+        ws.onopen = () => {
+            console.log('WebSocket connection opened.');
+        };
+
+        ws.onmessage = (event) => {
+            const newLog = document.createElement('div');
+            newLog.className = 'log-entry';
+            newLog.textContent = event.data;
+            logContainer.appendChild(newLog);
+            logContainer.scrollTop = logContainer.scrollHeight; // Scroll to the bottom
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket connection closed.');
+        };
+    </script>
+</body>
+</html>
