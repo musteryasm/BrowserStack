@@ -1,6 +1,5 @@
-## BrowserStack Interview
-The folder contains files for the BrowserStack assessment which took place on aug 10 2024 
-By - Shivam Musterya, DJSCE - CSE_DS 
+
+## By - Shivam Musterya, DJSCE - CSE_DS 
 
 ## Problem Statment
 The problem requires you to implement a log watching solution (similar to the tail -f command in UNIX). However, in this case, the log file is hosted on a remote machine (same machine as your server code).
